@@ -18,15 +18,15 @@ def count_neighbors(grid, row, col):
     cols = len(grid[0])
     
     # TODO: Implement your neighbor-counting logic here!
-    for dr in range (-1,2):
-        for dc in range (-1,2):
-            n_row = row + dr
-            n_col = col + dc
-            if rows>n_row>=0 and cols>n_col>=0:
-                if dr==0 and dc==0:
+    for dr in range (-1,2):           #Helps in iterating through the row number of each neighbour.
+        for dc in range (-1,2):       #Helps in iterating through the column number of each neighbour.
+            neighbouring_row = row + dr
+            neighbouring_col = col + dc
+            if rows>neighbouring_row>=0 and cols>neighbouring_col>=0:     #Checks if the row actually exists / is not off the grid
+                if dr==0 and dc==0:       #Excludes the specific cell
                     continue
                 else:
-                    alive_count = grid[n_row][n_col] + alive_count
+                    alive_count = grid[neighbouring_row][neighbouring_col] + alive_count
     return alive_count
 
 #---------------------------- TASK 2 ----------------------------
