@@ -26,7 +26,7 @@ def count_neighbors(grid, row, col):
                 if dr==0 and dc==0:       #Excludes the specific cell
                     continue
                 else:
-                    alive_count = grid[neighbouring_row][neighbouring_col] + alive_count
+                    alive_count += grid[neighbouring_row][neighbouring_col]
     return alive_count
 
 #---------------------------- TASK 2 ----------------------------
