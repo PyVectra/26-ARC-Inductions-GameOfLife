@@ -49,22 +49,26 @@ def compute_next_generation(grid):
     rows = len(grid)
     cols = len(grid[0]) if rows > 0 else 0
     
-    # Create a new blank grid of the same size, filled with 0s (dead cells)
-    next_grid = [[0 for _ in range(cols)] for _ in range(rows)]
+    next_grid = [[0 for _ in range(cols)] for _ in range(rows)]                # Creates a new blank grid of the same size, filled with 0s
     
     # TODO: Iterate through every cell in the `grid`.
     for row in range(0,rows):
             for col in range(0,cols):
+
+
+                # TODO: Use your `count_neighbors` function to find out how many neighbors it has.
                 num_neighbours = count_neighbors(grid,row,col)
-                if grid[row][col] == 1:
-                    if num_neighbours == 2 or num_neighbours == 3:
+
+
+                # TODO: Apply the 4 Rules of Life to determine if it should be 1 (alive) or 0 (dead) in `next_grid`.
+                if grid[row][col] == 1:                                  # 2. Survival: Any live cell with two or three live neighbors lives on to the next generation.
+                    if num_neighbours == 2 or num_neighbours == 3:       
                            next_grid[row][col] = 1
-                elif grid[row][col] == 0:
+                    elif num_neighbours >= 3:                            # 3. Overpopulation: Any live cell with more than three live neighbors dies.
+                         next_grid[row][col] = 0
+                    elif num_neighbours <= 2:                            # 1. Underpopulation: Any live cell with fewer than two live neighbors dies.
+                         next_grid[row][col] = 0                         
+                elif grid[row][col] == 0:                                # 4. Reproduction: Any dead cell with exactly three live neighbors becomes a live cell.
                          if num_neighbours == 3:
                               next_grid[row][col] = 1
-                         
-                           
-    # TODO: Use your `count_neighbors` function to find out how many neighbors it has.
-    # TODO: Apply the 4 Rules of Life to determine if it should be 1 (alive) or 0 (dead) in `next_grid`.
-
     return next_grid
